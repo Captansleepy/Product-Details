@@ -1,83 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Product Details</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Data Entry Form</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h3>Product Details</h3>
-    <form>
-      <div class="form-grid">
-        <label for="name">Name:</label>
-        <input type="text" id="name" value="Adjustable Race">
 
-        <label for="listPrice">List Price:</label>
-        <input type="text" id="listPrice" value="$0.00">
+    <h2>Data Entry Form</h2>
 
-        <label for="productNumber">Product Number:</label>
-        <input type="text" id="productNumber" value="AR-5381">
+    <form onsubmit="handleSubmit(event);">
+        <fieldset>
+            <legend>Personal Info</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-        <label for="standardCost">Standard Cost:</label>
-        <input type="text" id="standardCost" value="$0.00">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+        </fieldset>
 
-        <label for="model">Model:</label>
-        <select id="model"></select>
+        <fieldset>
+            <legend>Gender</legend>
+            <label><input type="radio" name="gender" value="Male" required> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+        </fieldset>
 
-        <label for="sellStart">Sell Start Date:</label>
-        <input type="date" id="sellStart" value="1998-06-01">
+        <fieldset>
+            <legend>Country</legend>
+            <label for="country">Select Country:</label>
+            <select id="country" name="country" required>
+                <option value="">--Choose--</option>
+                <option>Afghanistan</option>
+                <option>Bangladesh</option>
+                <option>Bhutan</option>
+                <option>Brunei</option>
+                <option>Cambodia</option>
+                <option>China</option>
+                <option>India</option>
+                <option>Indonesia</option>
+                <option>Iran</option>
+                <option>Iraq</option>
+                <option>Israel</option>
+                <option>Japan</option>
+                <option>Jordan</option>
+                <option>Kazakhstan</option>
+                <option>Kuwait</option>
+                <option>Kyrgyzstan</option>
+                <option>Laos</option>
+                <option>Lebanon</option>
+                <option>Malaysia</option>
+                <option>Maldives</option>
+                <option>Mongolia</option>
+                <option>Myanmar</option>
+                <option>Nepal</option>
+                <option>North Korea</option>
+                <option>Oman</option>
+                <option>Pakistan</option>
+                <option>Philippines</option>
+                <option>Qatar</option>
+                <option>Saudi Arabia</option>
+                <option>Singapore</option>
+                <option>South Korea</option>
+                <option>Sri Lanka</option>
+                <option>Syria</option>
+                <option>Taiwan</option>
+                <option>Tajikistan</option>
+                <option>Thailand</option>
+                <option>Timor-Leste</option>
+                <option>Turkey</option>
+                <option>Turkmenistan</option>
+                <option>United Arab Emirates</option>
+                <option>Uzbekistan</option>
+                <option>Vietnam</option>
+                <option>Yemen</option>
+            </select>
+        </fieldset>
 
-        <label for="category">Category:</label>
-        <select id="category"></select>
+        <fieldset>
+            <legend>Skills</legend>
+            <label><input type="checkbox" name="skills" value="C#"> C#</label>
+            <label><input type="checkbox" name="skills" value="Java"> Java</label>
+            <label><input type="checkbox" name="skills" value="Python"> Python</label>
+        </fieldset>
 
-        <label for="sellEnd">Sell End Date:</label>
-        <input type="date" id="sellEnd">
-
-        <label for="subcategory">Subcategory:</label>
-        <select id="subcategory"></select>
-
-        <label for="discountDate">Discont. Date:</label>
-        <input type="date" id="discountDate">
-
-        <label for="productLine">Product Line:</label>
-        <input type="text" id="productLine">
-
-        <label for="safetyStock">Safety Stock:</label>
-        <input type="text" id="safetyStock" value="1000">
-
-        <label for="class">Class:</label>
-        <input type="text" id="class">
-
-        <label for="reorderPoint">Reorder Point:</label>
-        <input type="text" id="reorderPoint" value="750">
-
-        <label for="style">Style:</label>
-        <input type="text" id="style">
-
-        <label for="daysToManu">Days To Man.:</label>
-        <input type="text" id="daysToManu" value="0">
-
-        <label for="color">Color:</label>
-        <input type="text" id="color">
-
-        <label for="make">Make:</label>
-        <input type="checkbox" id="make">
-
-        <label for="size">Size:</label>
-        <input type="text" id="size">
-
-        <label for="finishedGoods">Finished Goods:</label>
-        <input type="checkbox" id="finishedGoods">
-
-        <label for="weight">Weight:</label>
-        <input type="text" id="weight">
-      </div>
-      <div class="form-buttons">
-        <input type="submit" value="OK">
-        <input type="button" value="Cancel">
-      </div>
+        <button type="submit" class="submit-btn">Submit</button>
     </form>
-  </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+            const country = document.getElementById("country").value;
+
+            const skillElems = document.querySelectorAll('input[name="skills"]:checked');
+            const skills = Array.from(skillElems).map(el => el.value).join(", ");
+
+            alert(`Name: ${name}\nAge: ${age}\nGender: ${gender}\nCountry: ${country}\nSkills: ${skills}`);
+        }
+    </script>
+
 </body>
 </html>
